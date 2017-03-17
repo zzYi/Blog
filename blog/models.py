@@ -9,6 +9,7 @@ from django.db import models
 class Description(models.Model):
     """博客类别"""
     description = models.CharField(verbose_name="分类", max_length=20)
+    text = models.CharField(verbose_name="简介", max_length=100, blank=True)
 
     def __str__(self):
         return self.description
@@ -27,7 +28,7 @@ class Blog(models.Model):
     clicks = models.IntegerField(verbose_name="点击量", default=0)
     datetime = models.DateTimeField(verbose_name="提交时间", auto_now=True)
     # time = models.TimeField(verbose_name="提交时间", default=now)
-    description = models.ForeignKey(Description, verbose_name="分类")
+    description = models.ManyToManyField(Description, verbose_name="分类")
 
     def __str__(self):
         return self.title

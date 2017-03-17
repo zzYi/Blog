@@ -4,10 +4,14 @@ from models import *
 
 
 class Blogadmin(admin.ModelAdmin):
-    list_display = ("title", "description", "clicks", "datetime")
+    list_display = ("title", "clicks", "datetime")
     search_fields = ("title", "description")
     readonly_fields = ("clicks",)
 
 
+class Descriptionadmin(admin.ModelAdmin):
+    list_display = ("description", "text",)
+
+
 admin.site.register(Blog, Blogadmin)
-admin.site.register(Description)
+admin.site.register(Description, Descriptionadmin)
